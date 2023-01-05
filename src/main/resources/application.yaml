@@ -1,0 +1,41 @@
+server:
+  port: 1313
+
+spring:
+  application:
+    name: seckill-demo
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    password: root
+    username: root
+    url: jdbc:mysql://localhost:3306/seckill-demo?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=GMT%2B8
+  rabbitmq:
+    host: 43.143.152.130
+    port: 5673
+    username: guest
+    password: guest
+    publisher-returns: true
+    publisher-confirm: true
+    listener:
+      simple:
+        acknowledge-mode: manual
+mybatis-plus:
+  mapper-locations: classpath:com/lengao/myflag/api/mappers/**/*.xml
+  type-aliases-package: com.lengao.seckill.pojo
+  configuration:
+    auto-mapping-behavior: full
+    map-underscore-to-camel-case: true
+
+mapper:
+  not-empty: false
+  identity: MYSQL
+
+---
+spring:
+  profiles: dev
+  datasource:
+    username: root
+    password: LA@zzx123.
+    url: jdbc:mysql://43.143.152.130:3306/wx_mini_program?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=GMT%2B8
+
